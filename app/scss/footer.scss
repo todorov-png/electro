@@ -1,0 +1,146 @@
+.footer {
+  background-color: #171717;
+  padding: 2rem calc((100vw - #{$width-wrapper}) / 2) 1rem;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  &-nav {
+    display: flex;
+    justify-content: space-around;
+  }
+  &-list {
+    padding-left: 0;
+    &__item {
+      list-style-type: none;
+      h4 {
+        color: $footer-h4-color;
+        &:hover {
+          color:white;
+        }
+      }
+    }
+    &__link {
+      text-decoration: none;
+      color: $footer-text-color;
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 2.8rem;
+      &:hover {
+        color:white;
+      }
+    }
+  }
+  &-contacts {
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    address {
+      color: $footer-contact-color;
+      font-size: 1.4rem;
+      line-height: 2.8rem;
+    }
+    a {
+      text-decoration: none;
+      color: $footer-contact-color;
+      font-size: 1.4rem;
+      line-height: 2.8rem;
+    }
+    &__item {
+      margin-bottom: 1rem;
+    }
+  }
+}
+.social-network {
+  padding: 0;
+  li {
+    list-style-type: none;
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2.5rem;
+    margin-right: 1.3rem;
+    margin-bottom: 1.3rem;
+  }
+  a {
+    display: block;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 2.75rem;
+  }
+  &__vk {
+    background-color: rgba(#1f61a3, 0.8);
+    &:hover {
+      background-color: #1f61a3;
+    }
+  }
+  &__facebook {
+    background-color: rgba(#1d2c81, 0.8);
+    &:hover {
+      background-color: #1d2c81;
+    }
+  }
+  &__twitter {
+    background-color: rgba(#28a5db, 0.8);
+    &:hover {
+      background-color: #28a5db;
+    }
+  }
+  &__pinterest {
+    background-color: rgba(#a3212c, 0.8);
+    &:hover {
+      background-color: #a3212c;
+    }
+  }
+}
+
+
+@media (max-width: 700px) {
+  .footer {
+    grid-template-columns: 1fr;
+    &-contacts__item {
+      margin-bottom: 0;
+    }
+  }
+  .footer-contacts__item {
+   padding: 0 1rem;
+  }
+  .social-network li {
+    margin: 0.7rem 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 1rem 0.7rem;
+    &-list__link {
+      font-size: 1.2rem;
+    }
+    &-contacts {
+      address {
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        padding: 0.7rem;
+      }
+      a {
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+      }
+    }
+  }
+  .social-network {
+    text-align: center;
+    li {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 2rem;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+    a {
+      font-size: 1rem;
+      line-height: 2.15rem;
+    }
+  }
+}

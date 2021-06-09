@@ -1,0 +1,4 @@
+# Игнорирование файлов Node.js
+/node_modules/*
+
+/app/php/data_connect_db.php

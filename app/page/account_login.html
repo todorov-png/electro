@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация</title>
+  <link rel="icon" href="../images/favicon.ico"> 
+  <link rel="stylesheet" href="../css/form_account.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class = "header">
+            <div class="header__item">
+                <div class="menu-burger__header">
+                    <span></span>
+                </div>
+                <nav class="header__nav">
+                    <ul class="header__menu">
+                        <li><a href="page/form_reg.html" class="menu__item registration">Зарегистрироваться</a></li>
+                        <li><a href="page/account_login.html" class="menu__item account-login">Войти</a></li>
+                        <li><a href="#" class="menu__item">Материнские платы</a></li>
+                        <li><a href="#" class="menu__item">Процессоры</a></li>
+                        <li><a href="#" class="menu__item">Видеокарты</a></li>
+                        <li><a href="#" class="menu__item">Оперативная память</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header__item">
+                <a href="/" class="header__item-title">Electro</a>
+            </div>
+            <div class="header__item">
+                <a href="tel:+380951472434" class="header__item-phone">095-147-24-34</a>
+                <a href="form_reg.html" class="header__item-registration registration">Зарегистрироваться</a>
+                <a href="javascript:void(0);" onclick="goToBasket();" class="header__item-basket">
+                    <p>(<span class="counter-basket-text">0</span>)</p> 
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
+        </header>
+        <section class="wrapper-form-authorization">
+        <div class="form-authorization">
+            <div class="form-authorization__headers">
+            <p>Авторизация/Регистрация</p>
+            <p>
+                <i class="fas fa-user-circle"></i>
+            </p>
+            <p>Я уже зарегистрирован</p>
+            </div>
+            <form class="form-authorization__form">
+            <div class="form-authorization__form-row">
+                <label for="email">E-mail:</label>
+                <input id="email" type="email" name="email" placeholder="E-mail" required>
+            </div>
+            <div class="form-authorization__form-row">
+                <label for="password">Пароль:</label>
+                <input id="password" type="password" name="password" placeholder="Пароль" required minlength="4" maxlength="25">
+            </div>
+            <div class="form-authorization__form-conteiner-btn">
+                <button>Войти</button>
+            </div>
+            </form>
+        </div>
+        <div class="new-user">
+            <p class="new-user__title">Новый пользователь</p>
+            <span>Создание учетной записи позволит делать покупки быстрее и видеть состояние заказа.</span>
+            <a href="form_reg.html">Регистрация</a>
+        </div>
+        </section>
+    </div>
+    <footer class="footer">
+        <nav class="footer-nav">
+           <div class="footer-nav-column">
+               <ul class="footer-list">
+                   <li class="footer-list__item"><a class="footer-list__link" href="#"><h4>Комплектующие</h4></a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Материнские платы</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Процессоры</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Видеокарты</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Оперативная память</a></li>
+               </ul>
+           </div>
+           <div class="footer-nav-column">
+               <ul class="footer-list">
+                   <li class="footer-list__item"><a class="footer-list__link" href="#"><h4>Компания</h4></a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">О нас</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Контакты</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Вакансии</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Акции</a></li>
+               </ul>
+           </div>
+           <div class="footer-nav-column">
+               <ul class="footer-list">
+                   <li class="footer-list__item"><a class="footer-list__link" href="#"><h4>Информация</h4></a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Доставка</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Оплата</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Гарантии</a></li>
+                   <li class="footer-list__item"><a class="footer-list__link" href="#">Обмен и возврат</a></li>
+               </ul>
+           </div>
+       </nav> 
+       <div class="footer-contacts">
+           <div class="footer-contacts__wrapper">
+               <div class="footer-contacts__item">
+                   <ul class="social-network">
+                       <li class="social-network__vk"><a href="https://vk.com/"><i class="fab fa-vk"></i></a></li>
+                       <li class="social-network__facebook"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                       <li class="social-network__twitter"><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                       <li class="social-network__pinterest"><a href="https://pin.it/"><i class="fab fa-pinterest-p"></i></a></li>
+                   </ul>
+               </div>
+               <div class="footer-contacts__item">
+                   <address>ООО "ELECTRO" 61000, Украина, Харьков, ул.Чкалова д.17</address>
+               </div>
+               <div class="footer-contacts__item">
+                   <a href="tel:+380951472434">+380 (95) 147-24-34</a>
+               </div>
+           </div>
+       </div>
+   </footer>
+    <script src="https://kit.fontawesome.com/5ee99253b8.js" crossorigin="anonymous"></script>
+    <script src="../js/main.min.js"></script>
+</body>
+</html>
