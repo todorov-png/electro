@@ -2,3 +2,5 @@
 /node_modules/*
 
 /app/php/data_connect_db.php
+/app/js/Добавление товаров в корзину.js
+/app/js/test.js

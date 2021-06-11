@@ -33,6 +33,7 @@
                 <a href="page/form_reg.html" class="header__item-registration registration">Зарегистрироваться</a>
                 <a href="page/account_login.html" class="header__item-account account-login">Войти</a>
                 <a href="javascript:void(0);" onclick="goToBasket();" class="header__item-basket">
+                <!-- <a href="javascript:void(0);" onclick="new DescriptionMotherboard('.wrapper', 'Gigabyte B450 AORUS ELITE rev. 1.0', 'mb001', 2800, '/images/GIGABYTE-B450-AORUS-ELITE-REV--1-0.jpg', 'геймерская', 'AMD AM4', 'Ami', 'DIMM', '7.1', '24-контактный', 'ATX', 'AMD B450', 'DDR4', '3600 МГц', 'HDMI, M.2', '8-контактное', 'Наиболее хорошо оснащенная и функциональная материнская плата Gigabyte на основе набора системной логики AMD B450 с процессорным разъемом АМ4. Относится к семейству AORUS, включающем в себя игровые модели материнских плат. Позиционируется как продукт средней ценовой категории, совместима с CPU AMD Zen, а именно с моделями: Ryzen 3, 5, 7 (Pro) 1-го и 2-го поколения на ядрах Summit Ridge, Pinnacle Ridge, Raven Ridge и CPU Athlon 200GE (Pro). Имеет габариты соответствующие стандарту АТХ, предназначена для сборки высокопроизводительных домашних и игровых систем. Отличается использованием высокотехнологичной цифровой подсистемы питания Hybrid Digital PWM (8+3 фазы) и наличием специального радиатора Thermal Guard для отвода тепла от высокопроизводительного NVMe SSD-накопителя, подключаемого к первому порту М.2. Материнская плата Gigabyte B450 AORUS Elite поддерживает установку до 4-х модулей оперативной памяти с суммарным объемом до 64 Гб, чего достаточно для любых игр и приложений. Кроме двух портов М.2 она оборудована 6-ю разъемами SATA3 для SSD/HDD-дисков, интегрированным гигабитным сетевым контроллером Realtek и восьмиканальным аудиокодеком Realtek ALC892 с улучшенным аналоговым трактом. Подключение периферийных устройств возможно к 11 USB-портам, среди которых имеется 4 высокоскоростных разъемов USB 3.1 Gen1 (до 5 Гбит/с). Плата оборудована светодиодной подсветкой и поддерживает технологию ее синхронизации Gigabyte RGB Fusion.').render();" class="header__item-basket"> -->
                     <p>(<span class="counter-basket-text">0</span>)</p> 
                     <i class="fas fa-shopping-cart"></i>
                 </a>
@@ -40,6 +41,221 @@
         </header>
 
 
+
+        
+
+        <!-- <section class="product">
+            <h3 class="product__title">Материнская плата Gigabyte B450 AORUS ELITE rev. 1.0</h3>
+            <nav class="product__nav">
+                <ul class="product__menu">
+                    <li><a href="javascript:void(0);" onclick="renderElement('motherboard', 'description', ${this.idProduct});" class="product-menu__item">описание</a></li>
+                    <li><a href="javascript:void(0);" onclick="renderElement('motherboard', 'characteristic', ${this.idProduct});" class="product-menu__item product-selected-menu">характеристики</a></li>
+                    <li><a href="javascript:void(0);" onclick="callPopUp('Раздел находится в разработке!');" class="product-menu__item">отзывы</a></li>
+                    <li><a href="javascript:void(0);" onclick="callPopUp('Раздел находится в разработке!');" class="product-menu__item">комплектующие</a></li>
+                    <li><a href="javascript:void(0);" onclick="addToBasketProduct('Gigabyte B450 AORUS ELITE rev. 1.0', 'mb001', 2800);" class="product-menu__item">купить</a></li>
+                    <li><a href="javascript:void(0);" onclick="callPopUp('Раздел находится в разработке!');" class="product-menu__item">добавить к сравнению</a></li>
+                </ul>
+            </nav>
+            <div class="product-characteristics">
+                <img class="product-characteristics__img" src="/images/GIGABYTE-B450-AORUS-ELITE-REV--1-0.jpg" alt="">
+                <ul class="product-characteristics__list">
+                    <li class="product-characteristics-list__item">По направлению: <span>геймерская</span></li>
+                    <li class="product-characteristics-list__item">Socket: <span>AMD AM4</span></li>
+                    <li class="product-characteristics-list__item">BIOS: <span>Ami</span></li>
+                    <li class="product-characteristics-list__item">Форм-фактор ОЗУ: <span>DIMM</span></li>
+                    <li class="product-characteristics-list__item">Звук (каналов): <span>7.1</span></li>
+                    <li class="product-characteristics-list__item">Разъем питания: <span>24-контактный</span></li>
+                    <li class="product-characteristics-list__item">Форм-фактор: <span>ATX</span></li>
+                    <li class="product-characteristics-list__item">Чипсет: <span>AMD B450</span></li>
+                    <li class="product-characteristics-list__item">Слоты ОЗУ: <span>DDR4 4 сл</span></li>
+                    <li class="product-characteristics-list__item">Тактовая частота ОЗУ: <span>3600 МГц</span></li>
+                    <li class="product-characteristics-list__item">Разъемы: <span>HDMI, M.2</span></li>
+                    <li class="product-characteristics-list__item">Питание процессора: <span>8-контактное</span></li>
+                </ul>
+            </div>
+            <h4 class="product__description-title">описание:</h4>
+            <p class="product__description-text">
+                Наиболее хорошо оснащенная и функциональная материнская плата Gigabyte на основе набора системной логики AMD B450 с процессорным разъемом АМ4. Относится к семейству AORUS, включающем в себя игровые модели материнских плат. Позиционируется как продукт средней ценовой категории, совместима с CPU AMD Zen, а именно с моделями: Ryzen 3, 5, 7 (Pro) 1-го и 2-го поколения на ядрах Summit Ridge, Pinnacle Ridge, Raven Ridge и CPU Athlon 200GE (Pro). Имеет габариты соответствующие стандарту АТХ, предназначена для сборки высокопроизводительных домашних и игровых систем. Отличается использованием высокотехнологичной цифровой подсистемы питания Hybrid Digital PWM (8+3 фазы) и наличием специального радиатора Thermal Guard для отвода тепла от высокопроизводительного NVMe SSD-накопителя, подключаемого к первому порту М.2. Материнская плата Gigabyte B450 AORUS Elite поддерживает установку до 4-х модулей оперативной памяти с суммарным объемом до 64 Гб, чего достаточно для любых игр и приложений. Кроме двух портов М.2 она оборудована 6-ю разъемами SATA3 для SSD/HDD-дисков, интегрированным гигабитным сетевым контроллером Realtek и восьмиканальным аудиокодеком Realtek ALC892 с улучшенным аналоговым трактом. Подключение периферийных устройств возможно к 11 USB-портам, среди которых имеется 4 высокоскоростных разъемов USB 3.1 Gen1 (до 5 Гбит/с). Плата оборудована светодиодной подсветкой и поддерживает технологию ее синхронизации Gigabyte RGB Fusion.
+            </p>
+        </section> -->
+
+
+        <!-- <section class="product">
+            <h3 class="product__title">Материнская плата Gigabyte B450 AORUS ELITE rev. 1.0</h3>
+            <nav class="product__nav">
+                <ul class="product__menu">
+                    <li><a href="javascript:void(0);" onclick="new DescriptionMotherboard('.wrapper', 'Gigabyte B450 AORUS ELITE rev. 1.0', 'mb001', 2800, '/images/GIGABYTE-B450-AORUS-ELITE-REV--1-0.jpg', 'геймерская', 'AMD AM4', 'Ami', 'DIMM', '7.1', '24-контактный', 'ATX', 'AMD B450', 'DDR4', '3600 МГц', 'HDMI, M.2', '8-контактное', 'Наиболее хорошо оснащенная и функциональная материнская плата Gigabyte на основе набора системной логики AMD B450 с процессорным разъемом АМ4. Относится к семейству AORUS, включающем в себя игровые модели материнских плат. Позиционируется как продукт средней ценовой категории, совместима с CPU AMD Zen, а именно с моделями: Ryzen 3, 5, 7 (Pro) 1-го и 2-го поколения на ядрах Summit Ridge, Pinnacle Ridge, Raven Ridge и CPU Athlon 200GE (Pro). Имеет габариты соответствующие стандарту АТХ, предназначена для сборки высокопроизводительных домашних и игровых систем. Отличается использованием высокотехнологичной цифровой подсистемы питания Hybrid Digital PWM (8+3 фазы) и наличием специального радиатора Thermal Guard для отвода тепла от высокопроизводительного NVMe SSD-накопителя, подключаемого к первому порту М.2. Материнская плата Gigabyte B450 AORUS Elite поддерживает установку до 4-х модулей оперативной памяти с суммарным объемом до 64 Гб, чего достаточно для любых игр и приложений. Кроме двух портов М.2 она оборудована 6-ю разъемами SATA3 для SSD/HDD-дисков, интегрированным гигабитным сетевым контроллером Realtek и восьмиканальным аудиокодеком Realtek ALC892 с улучшенным аналоговым трактом. Подключение периферийных устройств возможно к 11 USB-портам, среди которых имеется 4 высокоскоростных разъемов USB 3.1 Gen1 (до 5 Гбит/с). Плата оборудована светодиодной подсветкой и поддерживает технологию ее синхронизации Gigabyte RGB Fusion.', 'mb001').render();"  class="product-menu__item">описание</a></li>
+                    <li><a href="#" class="product-menu__item product-selected-menu">характеристики</a></li>
+                    <li><a href="javascript:void(0);" onclick="callPopUp('Раздел находится в разработке!');" class="product-menu__item">отзывы</a></li>
+                    <li><a href="javascript:void(0);" onclick="callPopUp('Раздел находится в разработке!');" class="product-menu__item">комплектующие</a></li>
+                    <li><a href="javascript:void(0);" onclick="addToBasketProduct('Gigabyte B450 AORUS ELITE rev. 1.0', 'mb001', 2800);" class="product-menu__item">купить</a></li>
+                    <li><a href="javascript:void(0);" onclick="renderElement('motherboard', 'description', 'mb001');" class="product-menu__item">добавить к сравнению</a></li>
+                </ul>
+            </nav>
+            <div class="product__characteristic">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Основное</th>
+                        </tr>
+                        <tr>
+                            <td>Socket</td>
+                            <td>${this.socket}</td>
+                        </tr>
+                        <tr>
+                            <td>Форм-фактор</td>
+                            <td>${this.formFactor}</td>
+                        </tr>
+                        <tr>
+                            <td>Размеры (ВхШ)</td>
+                            <td>305x235 мм</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Чипсет</th>
+                        </tr>
+                        <tr>
+                            <td>Чипсет</td>
+                            <td>${this.chipset}</td>
+                        </tr>
+                        <tr>
+                            <td>BIOS</td>
+                            <td>${this.bios}</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Оперативная память</th>
+                        </tr>
+                        <tr>
+                            <td>DDR4</td>
+                            <td>4 слота</td>
+                        </tr>
+                        <tr>
+                            <td>Форм-фактор слота для памяти</td>
+                            <td>${this.ramFormFactor}</td>
+                        </tr>
+                        <tr>
+                            <td>Режим работы</td>
+                            <td>2-х канальный</td>
+                        </tr>
+                        <tr>
+                            <td>Максимальная тактовая частота</td>
+                            <td>${this.ramFrequency}</td>
+                        </tr>
+                        <tr>
+                            <td>Максимальный объем памяти</td>
+                            <td>64 ГБ</td>
+                        </tr>
+                        <tr>
+                            <td>Поддержка XMP</td>
+                            <td>+</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Видеовыходы</th>
+                        </tr>
+                        <tr>
+                            <td>Выход HDMI</td>
+                            <td>+</td>
+                        </tr>
+                        <tr>
+                            <td>Выход DVI</td>
+                            <td>DVI-D</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Интегрированное аудио</th>
+                        </tr>
+                        <tr>
+                            <td>Аудиочип</td>
+                            <td>Realtek ALC892</td>
+                        </tr>
+                        <tr>
+                            <td>Звук (каналов)</td>
+                            <td>${this.sound}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Сетевые интерфейсы</th>
+                        </tr>
+                        <tr>
+                            <td>LAN (RJ-45)</td>
+                            <td>1 Гбит/с</td>
+                        </tr>
+                        <tr>
+                            <td>Кол-во LAN-портов</td>
+                            <td>1 шт</td>
+                        </tr>
+                        <tr>
+                            <td>LAN контроллер</td>
+                            <td>Realtek GbE</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Слоты плат расширения</th>
+                        </tr>
+                        <tr>
+                            <td>Слотов PCI-E 1x</td>
+                            <td>2 шт</td>
+                        </tr>
+                        <tr>
+                            <td>Слотов PCI-E 16x</td>
+                            <td>2 шт</td>
+                        </tr>
+                        <tr>
+                            <td>Поддержка PCI Express</td>
+                            <td>3.0</td>
+                        </tr>
+                        <tr>
+                            <td>Поддержка CrossFire (AMD)</td>
+                            <td>+</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Разъемы на задней панели</th>
+                        </tr>
+                        <tr>
+                            <td>USB 2.0</td>
+                            <td>4 шт</td>
+                        </tr>
+                        <tr>
+                            <td>USB 3.2</td>
+                            <td>4 шт</td>
+                        </tr>
+                        <tr>
+                            <td>PS/2</td>
+                            <td>1 шт</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Разъемы питания</th>
+                        </tr>
+                        <tr>
+                            <td>Основной разъем питания</td>
+                            <td>${this.powerPlug}</td>
+                        </tr>
+                        <tr>
+                            <td>Питание процессора</td>
+                            <td>${this.processorPower}</td>
+                        </tr>
+                        <tr>
+                            <td>Разъемов питания кулеров</td>
+                            <td>4 шт</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section> -->
 
 
     </div>
@@ -94,5 +310,9 @@
     </footer>
     <script src="https://kit.fontawesome.com/5ee99253b8.js" crossorigin="anonymous"></script>
     <script src="js/main.min.js"></script>
+    <script>
+        renderElement('motherboard', 'description', 'mb001');
+        //comparisonProduct('mb001');
+    </script>
 </body>
 </html>

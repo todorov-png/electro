@@ -46,8 +46,9 @@ function scripts() {
         'app/js/form_registration.js',
         'app/js/form_account.js',
         'app/js/footer.js',
-        //'app/js/instruments.js',
+        'app/js/product.js',
         'app/js/basket.js',
+        'app/js/services.js',
         'app/js/history_of_orders.js'
     ])
         .pipe(concat('main.min.js')) // Обьединяю в 1 фаил

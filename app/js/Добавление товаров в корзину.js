@@ -1,7 +1,7 @@
 'use strict';
 
 //Появление надписи при наведении на блок с инструментом
-const instruments = document.querySelectorAll(".instruments-item");
+/* const instruments = document.querySelectorAll(".instruments-item");
 
 if(instruments !== null) {
   instruments.forEach((elem)=>{
@@ -72,4 +72,52 @@ if(instruments !== null) {
       }
     });
   });
+} */
+
+
+function addToBasketProduct(nameProduct, dataID, price) {
+  const user = JSON.parse(localStorage.getItem('data_user')),
+            counterBasketText = document.querySelector(".counter-basket-text");
+
+      if(user !== null) {
+        let basket = JSON.parse(localStorage.getItem('data_basket'));
+
+        if(basket === null) {
+          //Если корзина пуста, то сохраняем данные
+          basket = [{
+              id: dataID,
+              name: nameProduct,
+              price: price,
+              counter: 1,
+              sum: price
+          }];
+          localStorage.setItem('data_basket', JSON.stringify(basket));
+          counterBasketText.textContent = parseInt(counterBasketText.textContent) + 1;
+          callPopUp('Товар добавлен в корзину!');
+        } else {
+          let i = 0;
+          basket.forEach(obj => {
+            if(obj.id === dataID) {
+              i++;
+            }
+          });
+          
+          if(i === 0) {
+            basket.push({
+              id: dataID,
+              name: nameProduct,
+              price: price,
+              counter: 1,
+              sum: price
+            });
+            localStorage.setItem('data_basket', JSON.stringify(basket));
+            counterBasketText.textContent = parseInt(counterBasketText.textContent) + 1;
+            callPopUp('Товар добавлен в корзину!');
+          } else {
+            callPopUp('Вы уже добавили этот товар в корзину!');
+          }
+        }
+      } else {
+        callPopUp('Для добавления в корзину необходимо авторизоваться!');
+      }
 }
