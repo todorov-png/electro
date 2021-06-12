@@ -52,7 +52,7 @@ function scripts() {
         'app/js/history_of_orders.js'
     ])
         .pipe(concat('main.min.js')) // Обьединяю в 1 фаил
-        .pipe(uglify())              // Минифицирую
+        //.pipe(uglify())              // Минифицирую
         .pipe(dest('app/js'))        // Выкидываю в папку js
         .pipe(browserSync.stream()); // Обновляем сервер
 }

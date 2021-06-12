@@ -17,9 +17,13 @@ if (isset($_POST['id'])) {
   $id = $_POST['id'];
   
   //получаем данные с BD о продукте
-  $query_select_user_data = "SELECT dataproduct FROM product_electro WHERE 	idproduct='$id'";
+  $query_select_user_data = "SELECT dataproduct, comment FROM product_electro WHERE	idproduct='$id'";
   $result_select_user_data = mysqli_fetch_array(mysqli_query($link, $query_select_user_data));
-  $answer = $result_select_user_data['dataproduct'];
+
+  $answer = array(
+    'dataproduct' => $result_select_user_data['dataproduct'],
+    'comment' => $result_select_user_data['comment']
+  ); 
 
   // переводим в JSON и отправляем ответ
   echo json_encode($answer, JSON_UNESCAPED_UNICODE); 
