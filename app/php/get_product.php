@@ -16,17 +16,23 @@ if (isset($_POST['id'])) {
 
   $id = $_POST['id'];
   
-  //получаем данные с BD о продукте
-  $query_select_user_data = "SELECT dataproduct, comment FROM product_electro WHERE	idproduct='$id'";
-  $result_select_user_data = mysqli_fetch_array(mysqli_query($link, $query_select_user_data));
+  if ($id == 'all') {
+    $query_select_user_data = "SELECT dataproduct, comment FROM product_electro";
+    $answer = mysqli_fetch_all(mysqli_query($link, $query_select_user_data), MYSQLI_ASSOC);
 
-  $answer = array(
-    'dataproduct' => $result_select_user_data['dataproduct'],
-    'comment' => $result_select_user_data['comment']
-  ); 
+  } else {
+    //получаем данные с BD о продукте
+    $query_select_user_data = "SELECT dataproduct, comment FROM product_electro WHERE	idproduct='$id'";
+    $result_select_user_data = mysqli_fetch_array(mysqli_query($link, $query_select_user_data));
 
+    $answer = array(
+      'dataproduct' => $result_select_user_data['dataproduct'],
+      'comment' => $result_select_user_data['comment']
+    ); 
+  }
   // переводим в JSON и отправляем ответ
   echo json_encode($answer, JSON_UNESCAPED_UNICODE); 
+  //echo json_encode($result_select_user_data, JSON_UNESCAPED_UNICODE); 
 }     
   
 // закрываем подключение
