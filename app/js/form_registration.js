@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function(){
             form.reset();
             localStorage.setItem('data_user', request.response);
             setTimeout(function() {
-              document.location.href = "http://electroshopkhai.zzz.com.ua/";
+              document.location.href = "../";
             }, 1000);
           } else {
             callPopUp('Пользователь с таким email уже зарегистрирован, перейдите на страницу входа!');

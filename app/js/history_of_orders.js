@@ -33,7 +33,7 @@ function goToMyAccount(){
 
 function signOut() {
   localStorage.clear();
-  document.location.href = "http://electroshopkhai.zzz.com.ua";
+  document.location.href = "../";
 }
 
 
@@ -73,7 +73,7 @@ function createTableHistory() {
       order[1].forEach((product) => {
         sum += product.price * product.counter;
         tableTextHTML += `<tr class="table-history-orders__row" data-id="${product.id}">
-                            <td class="table-history-orders__row-name">${product.name}</td>
+                            <td class="table-history-orders__row-name"><a href="../#${product.id.slice(0, 2)}/${product.id.slice(2)}">${product.name}</a></td>
                             <td class="table-history-orders__row-price">${product.price}</td>
                             <td class="table-history-orders__row-amount">${product.counter}</td>
                           </tr>`;

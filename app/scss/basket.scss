@@ -41,6 +41,10 @@
     vertical-align: bottom;
     &-name {
       width: 35rem;
+      a {
+        text-decoration: none;
+        color: black;
+      }
     }
     &-price {
       width: 6rem;

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
               form.reset();
               localStorage.setItem('data_user', request.response);
               setTimeout(function() {
-                document.location.href = "http://electroshopkhai.zzz.com.ua/";
+                document.location.href = "../";
               }, 1000); 
             } else {
               callPopUp('Введён неверный пароль!');

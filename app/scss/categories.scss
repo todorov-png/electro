@@ -2,6 +2,10 @@
   &__title {
     font-size: 2.5rem;
     margin: 1rem;
+    a {
+      text-decoration: none;
+      color: black;
+    }
   }
   &__item {
     display: grid;

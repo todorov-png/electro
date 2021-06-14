@@ -19,10 +19,10 @@
                     <ul class="header__menu">
                         <li><a href="page/form_reg.html" class="menu__item registration">Зарегистрироваться</a></li>
                         <li><a href="page/account_login.html" class="menu__item account-login">Войти</a></li>
-                        <li><a href="javascript:void(0);" onclick="new Categories('.wrapper', 'mb').render();" class="menu__item">Материнские платы</a></li>
-                        <li><a href="javascript:void(0);" onclick="new Categories('.wrapper', 'cp').render();" class="menu__item">Процессоры</a></li>
-                        <li><a href="javascript:void(0);" onclick="new Categories('.wrapper', 'gc').render();" class="menu__item">Видеокарты</a></li>
-                        <li><a href="javascript:void(0);" onclick="new Categories('.wrapper', 'rm').render();" class="menu__item">Оперативная память</a></li>
+                        <li><a href="#mb" onclick="new Categories('.wrapper', 'mb').render();" class="menu__item">Материнские платы</a></li>
+                        <li><a href="#cp" onclick="new Categories('.wrapper', 'cp').render();" class="menu__item">Процессоры</a></li>
+                        <li><a href="#gc" onclick="new Categories('.wrapper', 'gc').render();" class="menu__item">Видеокарты</a></li>
+                        <li><a href="#rm" onclick="new Categories('.wrapper', 'rm').render();" class="menu__item">Оперативная память</a></li>
                     </ul>
                 </nav>
             </div>
@@ -118,11 +118,11 @@
          <nav class="footer-nav">
             <div class="footer-nav-column">
                 <ul class="footer-list">
-                    <li class="footer-list__item"><a class="footer-list__link" href="javascript:void(0);" onclick="callPopUp('Раздел находится в разработке!');"><h4>Комплектующие</h4></a></li>
-                    <li class="footer-list__item"><a class="footer-list__link" href="javascript:void(0);" onclick="new Categories('.wrapper', 'mb').render();">Материнские платы</a></li>
-                    <li class="footer-list__item"><a class="footer-list__link" href="javascript:void(0);" onclick="new Categories('.wrapper', 'cp').render();">Процессоры</a></li>
-                    <li class="footer-list__item"><a class="footer-list__link" href="javascript:void(0);" onclick="new Categories('.wrapper', 'gc').render();">Видеокарты</a></li>
-                    <li class="footer-list__item"><a class="footer-list__link" href="javascript:void(0);" onclick="new Categories('.wrapper', 'rm').render();">Оперативная память</a></li>
+                    <li class="footer-list__item"><a class="footer-list__link" href="#"   onclick="new indexPage('.wrapper').render();"><h4>Комплектующие</h4></a></li>
+                    <li class="footer-list__item"><a class="footer-list__link" href="#mb" onclick="new Categories('.wrapper', 'mb').render();">Материнские платы</a></li>
+                    <li class="footer-list__item"><a class="footer-list__link" href="#cp" onclick="new Categories('.wrapper', 'cp').render();">Процессоры</a></li>
+                    <li class="footer-list__item"><a class="footer-list__link" href="#gc" onclick="new Categories('.wrapper', 'gc').render();">Видеокарты</a></li>
+                    <li class="footer-list__item"><a class="footer-list__link" href="#rm" onclick="new Categories('.wrapper', 'rm').render();">Оперативная память</a></li>
                 </ul>
             </div>
             <div class="footer-nav-column">
@@ -166,7 +166,50 @@
     <script src="https://kit.fontawesome.com/5ee99253b8.js" crossorigin="anonymous"></script>
     <script src="js/main.min.js"></script>
     <script>
-        //renderElement('characteristic', 'cp001');
+        const url = window.location.hash.split('/');
+        
+        switch (url[0]) {
+            case '#mb':
+                if (url[1] === undefined) {
+                    new Categories('.wrapper', 'mb').render();
+                } else if (url[2] === undefined) {
+                    renderElement('description', 'mb'+url[1]);
+                } else {
+                    renderElement(url[2], 'mb'+url[1]);
+                }
+            break;
+            case '#cp':
+                if (url[1] === undefined) {
+                    new Categories('.wrapper', 'cp').render();
+                } else if (url[2] === undefined) {
+                    renderElement('characteristic', 'cp'+url[1]);
+                } else {
+                    renderElement(url[2], 'cp'+url[1]);
+                }
+            break;
+            case '#gc':
+                if (url[1] === undefined) {
+                    new Categories('.wrapper', 'gc').render();
+                } else if (url[2] === undefined) {
+                    renderElement('characteristic', 'gc'+url[1]);
+                } else {
+                    renderElement(url[2], 'gc'+url[1]);
+                }
+            break;
+            case '#rm':
+                if (url[1] === undefined) {
+                    new Categories('.wrapper', 'rm').render();
+                } else if (url[2] === undefined) {
+                    renderElement('description', 'rm'+url[1]);
+                } else {
+                    renderElement(url[2], 'rm'+url[1]);
+                }
+            break;
+            default:
+                new indexPage('.wrapper').render();
+            break;
+        }
+        
     </script>
 </body>
 </html>
