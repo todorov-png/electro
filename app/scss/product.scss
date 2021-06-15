@@ -1,6 +1,35 @@
 
 $color-blue: #2c509a;
 
+.comparison {
+  margin-top: 1rem;
+  &__title {
+    font-size: 3rem;
+    margin: 1rem;
+    
+    text-decoration: none;
+    color: $color-blue;
+    cursor: pointer;
+  }
+  &__characteristic {
+    display: flex;
+    margin-bottom: 2rem;
+    table {
+      border-collapse: separate;
+      border-spacing: 1.3rem 0.7rem;
+      font-size: 1.6rem;
+      margin-right: 4rem;
+      th {
+        text-align: left;
+        a {
+          text-decoration: none;
+          cursor: pointer;
+          color: $color-blue;
+        }
+      }
+    }
+  }
+}
 .product {
   .product-selected-menu {
     color: white;
@@ -81,7 +110,7 @@ $color-blue: #2c509a;
     margin-bottom: 2rem;
     table {
       border-collapse: separate;
-  border-spacing: 1.3rem 0.7rem;
+      border-spacing: 1.3rem 0.7rem;
       font-size: 1.6rem;
       margin-right: 4rem;
       th {
@@ -152,6 +181,20 @@ $color-blue: #2c509a;
 }
 
 @media (max-width: 890px) {
+  .comparison {
+    &__title {
+      font-size: 2.4rem;
+    }
+    &__characteristic {
+      margin-bottom: 2rem;
+      justify-content: space-around;
+      table {
+        border-spacing: 1rem 0.5rem;
+        font-size: 1.4rem;
+        margin-right: 2rem;
+      }
+    }
+  }
   .product {
     &__title {
       font-size: 2.4rem;
@@ -226,6 +269,16 @@ $color-blue: #2c509a;
 }
 
 @media (max-width: 600px) {
+  .comparison {
+    &__title {
+      font-size: 1.9rem;
+    }
+    &__characteristic table {
+      font-size: 1.3rem;
+      margin-right: 1rem;
+      width: 100%;
+    }
+  }
   .product {
     &__title {
       font-size: 1.9rem;
@@ -245,6 +298,20 @@ $color-blue: #2c509a;
         font-size: 1.3rem;
         margin-right: 1rem;
         width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .comparison {
+    &__title {
+      font-size: 1.7rem;
+    }
+    &__characteristic {
+      table {
+        font-size: 1rem;
+        margin-right: 0.5rem;
       }
     }
   }

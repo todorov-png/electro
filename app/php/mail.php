@@ -7,11 +7,13 @@ require_once 'data_connect_db.php';
 $link = mysqli_connect($host, $user, $password, $database) 
 		or die("Ошибка " . mysqli_error($link));
 
+$_POST = json_decode(file_get_contents('php://input'), true);
+
 // выполняем операции с базой данных
-if (isset($_POST['text']) && isset($_POST['phone'])) {
+if (isset($_POST['text']) && isset($_POST['email'])) {
 	$text = $_POST['text'];
-	$phone = $_POST['phone'];
-	$query = "INSERT INTO question_electro (text, phone) VALUES ('$text', '$phone')";
+	$email = $_POST['email'];
+	$query = "INSERT INTO question_electro (text, email) VALUES ('$text', '$email')";
 	$result = mysqli_query($link, $query); 
 
 	$project_name = "ELECTRO";
@@ -20,10 +22,10 @@ if (isset($_POST['text']) && isset($_POST['phone'])) {
   $sum = 0;
   $message .= "<tr style='background-color: #f8f8f8;'>
                 <td style='padding: 5px; border: #e9e9e9 1px solid;'>from</td>
-                <td style='padding: 5px; border: #e9e9e9 1px solid;'>$phone</td>
+                <td style='padding: 5px; border: #e9e9e9 1px solid;'>$email</td>
               </tr>
               <tr style='background-color: #f8f8f8;'>
-                <td style='padding: 5px; border: #e9e9e9 1px solid;'>from</td>
+                <td style='padding: 5px; border: #e9e9e9 1px solid;'>text</td>
                 <td style='padding: 5px; border: #e9e9e9 1px solid;'>$text</td>
               </tr>";
 
@@ -39,6 +41,8 @@ if (isset($_POST['text']) && isset($_POST['phone'])) {
   'Reply-To: '.$admin_email.'' . PHP_EOL;
 
   mail($admin_email, adopt($form_subject), $message, $headers ); 
+
+  echo json_encode($_POST, JSON_UNESCAPED_UNICODE);
 }
 // закрываем подключение
 mysqli_close($link);

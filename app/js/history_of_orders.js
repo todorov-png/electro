@@ -87,8 +87,86 @@ function createTableHistory() {
       table.innerHTML = tableTextHTML;
       historyBlock.append(table);
     });
-
+    createWriteToAdminForm(historyBlock);
   } else if(document.querySelector(".account__heading-text") !== null){
     document.querySelector(".account__heading-text").innerText = 'История заказов пуста';
+    createWriteToAdminForm(historyBlock);
   }
 }
+
+function createWriteToAdminForm(block) {
+  const form = document.createElement("form");
+
+  form.classList.add('admin-form');
+
+  form.innerHTML = `<h4 class="admin-form__title">Связаться с администрацией</h4>
+
+  <div class="admin-form__row">
+      <textarea rows="7" name="text" tabindex="2" placeholder="Ваше сообщение" required 
+      maxlength="1000"></textarea>
+  </div>
+  <div class="admin-form__row">
+      <button class="admin-form__row-btn">Отправить</button>
+  </div>`;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form),
+          data = Object.fromEntries(formData.entries());
+
+    data.email = JSON.parse(localStorage.getItem('data_user')).email;
+  
+    console.log(data);
+
+    const answer = await getDataBD('../php/mail.php', JSON.stringify(data));
+
+    console.log(answer);
+    if (answer) {
+      form.reset();
+      callPopUp('Спасибо за сообщение, мы с вами свяжемся!');
+    } else {
+      callPopUp('Произошла ошибка, попробуйте еще!');
+    }
+  });
+
+  block.append(form);
+}
+
+
+/* function addCommentProduct() {
+  const form = document.querySelector('.product__comments__form');
+       
+  if (form) {
+      try {
+        let dataStorage = JSON.parse(localStorage.getItem('data_user'));
+
+        if (dataStorage !== null) {
+            document.querySelector('.product__comments__form-row input').value  = `${dataStorage.email}`;
+        }
+      } catch {
+        console.log('Зачем очистили данные авторизации???');
+      }
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form),
+            data = Object.fromEntries(formData.entries()),
+            idProduct = form.getAttribute('data-id-product');
+
+      data.time = getNewDate();
+      data.id = idProduct;
+    
+      const answer = await getDataBD('../php/add_comment_product.php', JSON.stringify(data));
+
+      if (answer) {
+        form.reset();
+        callPopUp('Спасибо за отзыв!');
+        renderElement('comment', idProduct);
+      } else {
+        callPopUp('Произошла ошибка, попробуйте еще!');
+      }
+    });
+  }
+} */

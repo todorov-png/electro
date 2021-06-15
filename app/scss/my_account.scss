@@ -1,3 +1,5 @@
+$color-blue: #2c509a;
+
 .wrapper-account {
   padding: 2.5rem 6rem;
 }
@@ -12,6 +14,29 @@
   }
 }
 
+.admin-form {
+  &__title {
+    font-size: 2.4rem;
+    margin: 1rem 0;
+  }
+  &__row {
+    textarea {
+      font-size: 1.5rem;
+      border-radius: 0.7rem;
+      width: calc(100% - 0.7rem);
+      max-width: 60rem;
+    }
+    &-btn {
+      font-size: 1.5rem;
+      color: white;
+      background-color: $color-blue;
+      padding: 0.3rem;
+      width: 14rem;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+  }
+}
 .account {
   background-color: #bdb8b8;
   border-radius: 1.2rem;
@@ -96,6 +121,10 @@
       }
     }
   }
+  .admin-form__title {
+    font-size: 2.2rem;
+    margin: 0.7rem 0;
+  }
   .table-history-orders {
     border-spacing: 0 1rem;
     &__header {
@@ -122,6 +151,9 @@
       }
     }
   }
+  .admin-form__title {
+    font-size: 1.8rem;
+  }
 }
 
 @media (max-width: 400px) {
@@ -133,5 +165,8 @@
     top: 1rem;
     right: 1rem;
     font-size: 1.6rem;
+  }
+  .admin-form__title {
+    font-size: 1.5rem;
   }
 }

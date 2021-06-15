@@ -23,6 +23,7 @@
                         <li><a href="#cp" onclick="new Categories('.wrapper', 'cp').render();" class="menu__item">Процессоры</a></li>
                         <li><a href="#gc" onclick="new Categories('.wrapper', 'gc').render();" class="menu__item">Видеокарты</a></li>
                         <li><a href="#rm" onclick="new Categories('.wrapper', 'rm').render();" class="menu__item">Оперативная память</a></li>
+                        <li><a href="#comparison" onclick="new ComparisonPage('.wrapper').render();" class="menu__item">Сравнить товары</a></li>
                     </ul>
                 </nav>
             </div>
@@ -40,85 +41,13 @@
         </header>
 
 
-
-
-        <!-- <section class="product">
-            <h3 class="product__title">Материнская плата HyperX Fury Black DDR4 2x8Gb</h3>
-            <nav class="product__nav">
-                <ul class="product__menu">
-                    <li><a href="javascript:void(0);" onclick="renderElement('description', '${this.idProduct}');" class="product-menu__item">описание</a></li>
-                    <li><a href="javascript:void(0);" onclick="renderElement('characteristic', '${this.idProduct}');" class="product-menu__item">характеристики</a></li> 
-                    <li><a href="javascript:void(0);" onclick="callPopUp('Раздел находится в разработке!');" class="product-menu__item product-selected-menu">отзывы</a></li>
-                    <li><a href="javascript:void(0);" onclick="callPopUp('Раздел находится в разработке!');" class="product-menu__item">комплектующие</a></li>
-                    <li><a href="javascript:void(0);" onclick="addToBasketProduct('${this.name}', '${this.id}', ${this.price});" class="product-menu__item">купить</a></li>
-                    <li><a href="javascript:void(0);" onclick="comparisonProduct('${this.id}');" class="product-menu__item">Добавить к сравнению</a></li> 
-                </ul>
-            </nav>
-            <div class="product__comments">
-                <div class="product__comments__item">
-                    <span>Name</span>
-                    <p>По сути претензий к данной материнские нет. Но есть притенизии к самому магазину Ситилинк, в котором я собственно её и покупал. 10.05.2019 купил данную мать, 13.05.2019 установил ее в корпус и понял что с установкой дополнительного охлаждения беда. Его просто нет возможности поставить. 14.05.2019 написал в службу поддержки в Ситилинк и объяснил суть проблемы. На том конце сказали, что я могу ее обменять на другую. В этот же деньпринес ее назад в магазин. Ее визуально осмотрели и забрали на экстпертизу, где проверят на работоспособность. Сегодня позвонили и отказали в возврате и обмене, аргументируя это тем, что на сокете есть следы термопасты, и есть насечки от болтов в местах крепления. Типа если она не подходит, то надо было ее не ставить. Но узнать о том что она не подходит на глаз не представляется возможным. Верь ее реальных размеров нет в спецификациях на сайте. И не моя вина в том что она не влазит в стандартный АТХ корпус. В результате</p>
-                    <time datetime="2001-05-15 19:00">15 мая</time>
-                </div>
-
-                <div class="product__comments__item">
-                    <span>Name</span>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor vero natus ea debitis itaque, ex, fuga dolorum similique minima quibusdam blanditiis quaerat facere nam deleniti architecto! Reprehenderit magni non ex?</p>
-                    <time datetime="2001-05-15 19:00">15 мая</time>
-                </div>
-
-                <div class="product__comments__item">
-                    <span>Name</span>
-                    <p>Text comment</p>
-                    <time datetime="2001-05-15 19:00">15 мая</time>
-                </div>
-
-
-
-                <form class="product__comments__form" data-id-product="mb001">
-                    <h4>Оставить отзыв:</h4>
-                    <div class="product__comments__form-row">
-                        <input type="text" name="username" tabindex="1" placeholder="Ваше имя или email" required>
-                    </div>
-                    <div class="product__comments__form-row">
-                        <textarea rows="7" name="textcomment" tabindex="2" placeholder="Ваш отзыв" required 
-                         maxlength="1000"></textarea>
-                    </div>
-                    <div class="product__comments__form-row">
-                        <button class="product__comments__form-conteiner-btn">Отправить отзыв</button>
-                    </div>
-                </form>
-
-
-            </div>
-        </section> -->
-
-
-        <!-- <section class="categories">
-            <h3 class="categories__title">Материнские платы</h3>
-            <div class="categories__item">
-                <img class="categories__item-img" src='/images/mb001.jpg' alt="">
-                <div class="categories__item-content">
-                    <h4><a class="categories__item-title" href="javascript:void(0);" onclick="renderElement('description', 'mb001');">Название платы</a></h3>
-                    <ul class="categories__list">
-                        <li class="categories__list-item">Форм-фактор: <span>${this.formFactor}</span></li>
-                        <li class="categories__list-item">Socket: <span>${this.socket}</span></li>
-                        <li class="categories__list-item">ОЗУ: <span>${this.ramSlot}, ${this.ramFrequency}</span></li>
-                        <li class="categories__list-item">Чипсет: <span>${this.chipset}</span></li>
-                        <li class="categories__list-item">Разъемы: <span>${this.plugs}</span></li>
-                        <li class="categories__list-item">Расширения: <span>PCI-E 1x - ${this.slotsPCIE1x}, PCI-E 16x - ${this.slotsPCIE16x}</span></li>
-                    </ul>
-                    <a href="javascript:void(0);" onclick="comparisonProduct('${this.id}');" class="categories__item-content-btn">Добавить к сравнению</a>
-                </div>
-            </div>
-        </section> -->
         
     </div>
     <footer class="footer">
          <nav class="footer-nav">
             <div class="footer-nav-column">
                 <ul class="footer-list">
-                    <li class="footer-list__item"><a class="footer-list__link" href="#"   onclick="new indexPage('.wrapper').render();"><h4>Комплектующие</h4></a></li>
+                    <li class="footer-list__item"><a class="footer-list__link" href="#"   onclick="new IndexPage('.wrapper').render();"><h4>Комплектующие</h4></a></li>
                     <li class="footer-list__item"><a class="footer-list__link" href="#mb" onclick="new Categories('.wrapper', 'mb').render();">Материнские платы</a></li>
                     <li class="footer-list__item"><a class="footer-list__link" href="#cp" onclick="new Categories('.wrapper', 'cp').render();">Процессоры</a></li>
                     <li class="footer-list__item"><a class="footer-list__link" href="#gc" onclick="new Categories('.wrapper', 'gc').render();">Видеокарты</a></li>
@@ -165,51 +94,6 @@
     </footer>
     <script src="https://kit.fontawesome.com/5ee99253b8.js" crossorigin="anonymous"></script>
     <script src="js/main.min.js"></script>
-    <script>
-        const url = window.location.hash.split('/');
-        
-        switch (url[0]) {
-            case '#mb':
-                if (url[1] === undefined) {
-                    new Categories('.wrapper', 'mb').render();
-                } else if (url[2] === undefined) {
-                    renderElement('description', 'mb'+url[1]);
-                } else {
-                    renderElement(url[2], 'mb'+url[1]);
-                }
-            break;
-            case '#cp':
-                if (url[1] === undefined) {
-                    new Categories('.wrapper', 'cp').render();
-                } else if (url[2] === undefined) {
-                    renderElement('characteristic', 'cp'+url[1]);
-                } else {
-                    renderElement(url[2], 'cp'+url[1]);
-                }
-            break;
-            case '#gc':
-                if (url[1] === undefined) {
-                    new Categories('.wrapper', 'gc').render();
-                } else if (url[2] === undefined) {
-                    renderElement('characteristic', 'gc'+url[1]);
-                } else {
-                    renderElement(url[2], 'gc'+url[1]);
-                }
-            break;
-            case '#rm':
-                if (url[1] === undefined) {
-                    new Categories('.wrapper', 'rm').render();
-                } else if (url[2] === undefined) {
-                    renderElement('description', 'rm'+url[1]);
-                } else {
-                    renderElement(url[2], 'rm'+url[1]);
-                }
-            break;
-            default:
-                new indexPage('.wrapper').render();
-            break;
-        }
-        
-    </script>
+    <script>transitionPage(window.location.hash.split('/'));</script>
 </body>
 </html>

@@ -1,23 +1,517 @@
 'use strict';
 
+class ComparisonPage{
+  constructor(parentSelector){
+    this.parent = document.querySelector(parentSelector);
+  }
+  async render(){
+    const element = document.createElement('section');
 
-class indexPage{
+    closeBurgerMenu();
+    removeOldElement();
+
+    element.classList.add('comparison', 'content-page');
+
+    //Получаем данные для обработки с сервера
+    const proportionsComparison = JSON.parse(localStorage.getItem('data_comparison'));
+    
+    if (proportionsComparison) {
+
+      let arrayMB = [], arrayCP = [], arrayGC = [], arrayRM = [],
+          MBHTML = '', CPHTML = '', GCHTML = '', RMHTML = '';
+    
+      for (const item of proportionsComparison) {
+        const data = await getDataBD('../php/get_product.php', JSON.stringify({ 'id': item }));
+    
+        switch(item.slice(0, 2)) {
+          case 'mb':
+            arrayMB.push(JSON.parse(data.dataproduct));
+          break;
+          case 'cp':
+            arrayCP.push(JSON.parse(data.dataproduct));
+          break;
+          case 'gc':
+            arrayGC.push(JSON.parse(data.dataproduct));
+          break;
+          case 'rm':
+            arrayRM.push(JSON.parse(data.dataproduct));
+          break;
+        }
+      }
+
+      // формируем html для каждого типа продуктов
+      if (arrayMB.length !== 0) {
+        MBHTML += `<h3><a href="#mb" class="comparison__title" onclick="new Categories('.wrapper', 'mb').render();">Материнские платы</a></h3>
+        <div class="comparison__characteristic">
+          <table>
+              <tbody>
+                  <tr>
+                      <th>Основное</th>
+                      ${arrayMB.reduce((txt, item) => txt + '<th><a href="javascript:void(0);" onclick="renderElement(\'description\', \''+item.id+'\');">'+item.name+'</a></th>', '')}
+                  </tr>
+                  <tr>
+                      <td>Socket</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.socket+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Форм-фактор</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.formFactor+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Размеры (ВхШ)</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.size+'</td>', '')}
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th>Чипсет</th>
+                  </tr>
+                  <tr>
+                      <td>Чипсет</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.chipset+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>BIOS</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.bios+'</td>', '')}
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th>Оперативная память</th>
+                  </tr>
+                  <tr>
+                      <td>DDR4</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.slotsRAM+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Форм-фактор слота для памяти</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.ramFormFactor+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Режим работы</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.modeRAM+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Максимальная тактовая частота</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.ramFrequency+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Максимальный объем памяти</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.amountRAM+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Поддержка XMP</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.supportXMP+'</td>', '')}
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th>Видеовыходы</th>
+                  </tr>
+                  <tr>
+                      <td>Выход HDMI</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.outputHDMI+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Выход DVI</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.outputDVI+'</td>', '')}
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th>Интегрированное аудио</th>
+                  </tr>
+                  <tr>
+                      <td>Аудиочип</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.audioChip+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Звук (каналов)</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.sound+'</td>', '')}
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th>Сетевые интерфейсы</th>
+                  </tr>
+                  <tr>
+                      <td>LAN (RJ-45)</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.LAN+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Кол-во LAN-портов</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.quantityLAN+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>LAN контроллер</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.controllerLAN+'</td>', '')}
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th>Слоты плат расширения</th>
+                  </tr>
+                  <tr>
+                      <td>Слотов PCI-E 1x</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.slotsPCIE1x+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Слотов PCI-E 16x</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.slotsPCIE16x+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Поддержка PCI Express</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.supportExpress+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Поддержка CrossFire (AMD)</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.supportCrossFire+'</td>', '')}
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th>Разъемы на задней панели</th>
+                  </tr>
+                  <tr>
+                      <td>USB 2.0</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.USB2+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>USB 3.2</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.USB3+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>PS/2</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.PS2+'</td>', '')}
+                  </tr>
+              </tbody>
+              <tbody>
+                  <tr>
+                      <th>Разъемы питания</th>
+                  </tr>
+                  <tr>
+                      <td>Основной разъем питания</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.powerPlug+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Питание процессора</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.processorPower+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Разъемов питания кулеров</td>
+                      ${arrayMB.reduce((txt, item) => txt + '<td>'+item.coolerPower+'</td>', '')}
+                  </tr>
+              </tbody>
+          </table>
+      </div>`;
+      }
+      if (arrayCP.length !== 0) {
+        CPHTML += `<h3><a href="#cp" class="comparison__title" onclick="new Categories('.wrapper', 'cp').render();">Процессоры</a></h3>
+      <div class="comparison__characteristic">
+        <table>
+          <tbody>
+            <tr>
+                <th>Основное</th>
+                ${arrayCP.reduce((txt, item) => txt + '<th><a href="javascript:void(0);" onclick="renderElement(\'characteristic\', \''+item.id+'\');">'+item.name+'</a></th>', '')}
+            </tr>
+            <tr>
+                <td>Серия</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.series+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Socket</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.socket+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Кол-во ядер</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.numberCores+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Кол-во потоков</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.numberThreads+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Тактовая частота</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.clockFrequency+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Частота TurboBoost</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.turboBoost+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Техпроцесс</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.technicalProcess+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Модель IGP</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.IGP+'</td>', '')}
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+                <th>Объемы кэш памяти</th>
+            </tr>
+            <tr>
+                <td>1-го уровня L1</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.levelVolume1+'</td>', '')}
+            </tr>
+            <tr>
+                <td>2-го уровня L2</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.levelVolume2+'</td>', '')}
+            </tr>
+              <tr>
+                <td>3-го уровня L3</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.levelVolume3+'</td>', '')}
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+                <th>Характеристики</th>
+            </tr>
+            <tr>
+                <td>Тепловыделение (TDP)</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.TDP+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Множитель</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.multiplier+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Свободный множитель</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.freeMultiplier+'</td>', '')}
+            </tr>
+            <tr>
+                <td>Макс. рабочая температура</td>
+                ${arrayCP.reduce((txt, item) => txt + '<td>'+item.maxTemperature+'</td>', '')}
+            </tr>
+          </tbody>
+          <tbody>
+              <tr>
+                  <th>Поддержка памяти</th>
+              </tr>
+              <tr>
+                  <td>Макс. объем</td>
+                  ${arrayCP.reduce((txt, item) => txt + '<td>'+item.maxVolume+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Макс. частота</td>
+                  ${arrayCP.reduce((txt, item) => txt + '<td>'+item.maxFrequency+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Число каналов</td>
+                  ${arrayCP.reduce((txt, item) => txt + '<td>'+item.numberChannels+'</td>', '')}
+              </tr>
+          </tbody>
+        </table>
+      </div>`;
+      }
+      if (arrayGC.length !== 0) {
+        GCHTML += `<h3><a href="#gc" class="comparison__title" onclick="new Categories('.wrapper', 'gc').render();">Видеокарты</a></h3>
+        <div class="comparison__characteristic">
+          <table>
+            <tbody>
+              <tr>
+                  <th>Основное</th>
+                  ${arrayGC.reduce((txt, item) => txt + '<th><a href="javascript:void(0);" onclick="renderElement(\'characteristic\', \''+item.id+'\');">'+item.name+'</a></th>', '')}
+              </tr>
+              <tr>
+                  <td>Подключение</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.versionPCI+'</td>', '')}
+                  <td
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                  <th>Графический процессор</th>
+              </tr>
+              <tr>
+                  <td>Модель GPU</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.modelGPU+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Объем памяти</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.memoryCapacity+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Тип памяти</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.memoryType+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Разрядность шины</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.busWidth+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Частота работы GPU</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.frequencyGPU+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Частота работы памяти</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.frequencyRAM+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Техпроцесс</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.technicalProcess+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Макс. разрешение</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.maxResolution+'</td>', '')}
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                  <th>Разъемы подключения</th>
+              </tr>
+              <tr>
+                  <td>VGA</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.connectorVGA+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>DVI-D</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.connectorDVI+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>HDMI</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.connectorHDMI+'</td>', '')}
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                  <th>Программная часть</th>
+              </tr>
+              <tr>
+                  <td>Версия DirectX</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.versionDirectX+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Версия OpenGL</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.versionOpenGL+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Потоковых процессоров</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.streamProcessors+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Версия потоковых процессоров</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.streamProcessorsVersion+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Текстурных блоков</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.textureBlocks+'</td>', '')}
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                  <th>Общее</th>
+              </tr>
+              <tr>
+                  <td>Макс. подключаемых мониторов</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.connectedMonitors+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Охлаждение</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.cooling+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Занимаемых слотов</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.occupiedSlots+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Низкопрофильная</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.lowProfile+'</td>', '')}
+              </tr>
+              <tr>
+                  <td>Длина видеокарты</td>
+                  ${arrayGC.reduce((txt, item) => txt + '<td>'+item.length+'</td>', '')}
+              </tr>
+            </tbody>
+          </table>
+        </div>`;
+      }
+      if (arrayRM.length !== 0) {
+        RMHTML += `<h3><a href="#rm" class="comparison__title" onclick="new Categories('.wrapper', 'rm').render();">Оперативная память</a></h3>
+        <div class="comparison__characteristic">
+          <table>
+              <tbody>
+                  <tr>
+                      <th>Основное</th>
+                      ${arrayRM.reduce((txt, item) => txt + '<th><a href="javascript:void(0);" onclick="renderElement(\'description\', \''+item.id+'\');">'+item.name+'</a></th>', '')}
+                  </tr>
+                  <tr>
+                      <td>Объем памяти комплекта</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.ramKit+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Кол-во планок в комплекте</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.counterStripts+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Форм-фактор</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.ramFormFactor+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Тип памяти</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.ramSlot+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Тактовая частота</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.ramFrequency+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Пропускная способность</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.bandwidth+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Схема таймингов</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.timingScheme+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Рабочее напряжение</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.voltage+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Тип охлаждения</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.coolingType+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Профиль планки</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.plankProfile+'</td>', '')}
+                  </tr>
+                  <tr>
+                      <td>Высота планки</td>
+                      ${arrayRM.reduce((txt, item) => txt + '<td>'+item.heightPlank+'</td>', '')}
+                  </tr>
+              </tbody>
+          </table>
+      </div>`;
+      }
+
+      element.innerHTML = MBHTML + CPHTML + GCHTML + RMHTML;
+    }
+    this.parent.append(element);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+class IndexPage{
   constructor(parentSelector){
     this.parent = document.querySelector(parentSelector);
   }
   async render(){
     const element = document.createElement('section'),
-          oldElement = document.querySelector('.content-page'),
-          burgerMenu = document.querySelector(".menu-burger__header"),
-          headerNav = document.querySelector(".header__nav"),
           data = await getDataBD('../php/get_product.php', JSON.stringify({ 'id': 'all' }));
 
-      burgerMenu.classList.remove("open-menu");
-      headerNav.classList.remove("open-menu");
-
-    if (oldElement) {
-      oldElement.remove();
-    }
+    removeOldElement();
 
     element.classList.add('main', 'content-page');
 
@@ -115,17 +609,9 @@ class ComponentsPage{
   }
   async render(){
     const element = document.createElement('section'),
-          oldElement = document.querySelector('.content-page'),
-          burgerMenu = document.querySelector(".menu-burger__header"),
-          headerNav = document.querySelector(".header__nav"),
           data = await getDataBD('../php/get_product.php', JSON.stringify({ 'id': 'all' }));
 
-      burgerMenu.classList.remove("open-menu");
-      headerNav.classList.remove("open-menu");
-
-    if (oldElement) {
-      oldElement.remove();
-    }
+    removeOldElement();
 
     element.classList.add('categories', 'content-page');
 
@@ -253,7 +739,7 @@ class ComponentsPage{
       case 'cp':
         nav = `
         <div class="product">
-          <h3 class="product__title">Материнская плата ${this.name}</h3>
+          <h3 class="product__title">Процессор ${this.name}</h3>
           <nav class="product__nav">
               <ul class="product__menu">
                   <li><a href="javascript:void(0);" onclick="renderElement('characteristic', '${this.id}');" class="product-menu__item">характеристики</a></li>
@@ -306,7 +792,7 @@ class ComponentsPage{
       case 'gc':
         nav = `
         <div class="product">
-          <h3 class="product__title">Материнская плата ${this.name}</h3>
+          <h3 class="product__title">Видеокарта ${this.name}</h3>
           <nav class="product__nav">
               <ul class="product__menu">
                   <li><a href="javascript:void(0);" onclick="renderElement('characteristic', '${this.id}');" class="product-menu__item">характеристики</a></li>
@@ -359,7 +845,7 @@ class ComponentsPage{
       case 'rm':
         nav = `
         <div class="product">
-          <h3 class="product__title">Материнская плата ${this.name}</h3>
+          <h3 class="product__title">Оперативная память ${this.name}</h3>
           <nav class="product__nav">
               <ul class="product__menu">
                   <li><a href="javascript:void(0);" onclick="renderElement('description', '${this.id}');" class="product-menu__item">описание</a></li>
@@ -425,17 +911,10 @@ class Categories{
   }
   async render(){
     const element = document.createElement('section'),
-          oldElement = document.querySelector('.content-page'),
-          burgerMenu = document.querySelector(".menu-burger__header"),
-          headerNav = document.querySelector(".header__nav"),
           data = await getDataBD('../php/get_product.php', JSON.stringify({ 'id': 'all' }));
 
-      burgerMenu.classList.remove("open-menu");
-      headerNav.classList.remove("open-menu");
-
-    if (oldElement) {
-      oldElement.remove();
-    }
+    closeBurgerMenu();
+    removeOldElement();
 
     element.classList.add('categories', 'content-page');
 
@@ -574,12 +1053,9 @@ class DescriptionMotherboard{
     this.description = description;
   }
   render(){
-    const element = document.createElement('section'),
-          oldElement = document.querySelector('.content-page');
+    const element = document.createElement('section');
 
-    if (oldElement) {
-      oldElement.remove();
-    }
+    removeOldElement();
 
     element.classList.add('product', 'content-page');
 
@@ -660,12 +1136,9 @@ class CharacteristicMotherboard{
     this.coolerPower = coolerPower;
   }
   render(){
-    const element = document.createElement('section'),
-          oldElement = document.querySelector('.content-page');
+    const element = document.createElement('section');
 
-    if (oldElement) {
-      oldElement.remove();
-    }
+    removeOldElement();
 
     element.classList.add('product', 'content-page');
 
@@ -870,12 +1343,9 @@ class DescriptionRAM{
     this.heightPlank = heightPlank;
   }
   render(){
-    const element = document.createElement('section'),
-          oldElement = document.querySelector('.content-page');
+    const element = document.createElement('section');
 
-    if (oldElement) {
-      oldElement.remove();
-    }
+    removeOldElement();
 
     element.classList.add('product', 'content-page');
 
@@ -939,12 +1409,9 @@ class CharacteristicCPU{
     this.numberChannels = numberChannels;
   }
   render(){
-    const element = document.createElement('section'),
-          oldElement = document.querySelector('.content-page');
+    const element = document.createElement('section');
 
-    if (oldElement) {
-      oldElement.remove();
-    }
+    removeOldElement();
 
     element.classList.add('product', 'content-page');
 
@@ -1100,12 +1567,9 @@ class CharacteristicGraphicsCard{
 
   }
   render(){
-    const element = document.createElement('section'),
-          oldElement = document.querySelector('.content-page');
+    const element = document.createElement('section');
 
-    if (oldElement) {
-      oldElement.remove();
-    }
+    removeOldElement();
 
     element.classList.add('product', 'content-page');
 
@@ -1258,12 +1722,9 @@ class CommentPage{
       this.dataComment = dataComment;
     }
     render(){
-      const element = document.createElement('section'),
-            oldElement = document.querySelector('.content-page');
+      const element = document.createElement('section');
       
-      if (oldElement) {
-        oldElement.remove();
-      }
+      removeOldElement();
   
       element.classList.add('product', 'content-page');
 
@@ -1363,10 +1824,8 @@ async function renderElement(menu, idProduct) {
         const {parentSelector, name, id, price, src, direction, socket, bios, ramFormFactor, sound, powerPlug, formFactor, chipset, ramSlot, ramFrequency, plugs, processorPower, description, size, slotsRAM, modeRAM, amountRAM, supportXMP, outputHDMI, outputDVI, audioChip, LAN, quantityLAN, controllerLAN, slotsPCIE1x, slotsPCIE16x, supportExpress, supportCrossFire, USB2, USB3, PS2, coolerPower} = dataProduct;
 
         if (menu === 'description') {
-          console.log('description');
           new DescriptionMotherboard(parentSelector, name, id, price, src, direction, socket, bios, ramFormFactor, sound, powerPlug, formFactor, chipset, ramSlot, ramFrequency, plugs, processorPower, description).render(); 
         } else if (menu === 'characteristic') {
-          console.log('characteristic');
           new CharacteristicMotherboard(parentSelector, name, id, price, socket, bios, ramFormFactor, sound, powerPlug, formFactor, chipset, ramSlot, ramFrequency, processorPower, size, slotsRAM, modeRAM, amountRAM, supportXMP, outputHDMI, outputDVI, audioChip, LAN, quantityLAN, controllerLAN, slotsPCIE1x, slotsPCIE16x, supportExpress, supportCrossFire, USB2, USB3, PS2, coolerPower).render();
         }
       break;
@@ -1509,7 +1968,7 @@ function autoHeightBlock() {
 
 window.addEventListener('resize', () => {
   try {
-    let proportions = JSON.parse(localStorage.getItem('data_width'));
+    const proportions = JSON.parse(localStorage.getItem('data_width'));
 
     document.querySelectorAll('.main__item').forEach((item, i) => {
       item.querySelectorAll('.main-categories__item-img').forEach(img => {
