@@ -43,7 +43,7 @@ if (isset($_POST['email']) && isset($_POST['details'])) {
   echo json_encode($answer, JSON_UNESCAPED_UNICODE); 
 
   $project_name = "ELECTRO";
-  $admin_email  = "electro@electroshopkhai.zzz.com.ua";
+  $admin_email  = "electro@electroshopnure.zzz.com.ua";
   $form_subject = "Новый заказ с сайта ELECTRO";
   $sum = 0;
   $message .= "<tr style='background-color: #f8f8f8;'>

@@ -20,7 +20,7 @@ function goToMyAccount(){
         if(answer) {
           localStorage.setItem('data_history_of_orders', JSON.stringify(answer));
         }
-        document.location.href = "http://electroshopkhai.zzz.com.ua/page/my_account.html";
+        document.location.href = "page/my_account.html";
       } else {
         callPopUp('Произошла ошибка, попробуйте позже!');
       }
@@ -116,12 +116,9 @@ function createWriteToAdminForm(block) {
           data = Object.fromEntries(formData.entries());
 
     data.email = JSON.parse(localStorage.getItem('data_user')).email;
-  
-    console.log(data);
 
     const answer = await getDataBD('../php/mail.php', JSON.stringify(data));
 
-    console.log(answer);
     if (answer) {
       form.reset();
       callPopUp('Спасибо за сообщение, мы с вами свяжемся!');
@@ -132,41 +129,3 @@ function createWriteToAdminForm(block) {
 
   block.append(form);
 }
-
-
-/* function addCommentProduct() {
-  const form = document.querySelector('.product__comments__form');
-       
-  if (form) {
-      try {
-        let dataStorage = JSON.parse(localStorage.getItem('data_user'));
-
-        if (dataStorage !== null) {
-            document.querySelector('.product__comments__form-row input').value  = `${dataStorage.email}`;
-        }
-      } catch {
-        console.log('Зачем очистили данные авторизации???');
-      }
-    
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(form),
-            data = Object.fromEntries(formData.entries()),
-            idProduct = form.getAttribute('data-id-product');
-
-      data.time = getNewDate();
-      data.id = idProduct;
-    
-      const answer = await getDataBD('../php/add_comment_product.php', JSON.stringify(data));
-
-      if (answer) {
-        form.reset();
-        callPopUp('Спасибо за отзыв!');
-        renderElement('comment', idProduct);
-      } else {
-        callPopUp('Произошла ошибка, попробуйте еще!');
-      }
-    });
-  }
-} */

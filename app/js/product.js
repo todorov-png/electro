@@ -593,8 +593,9 @@ class IndexPage{
     });
 
     element.innerHTML = blockMB + '</div>' + blockCP + '</div>' + blockGC + '</div>' + blockRM + '</div>';
+    
     this.parent.append(element);
-    autoHeightBlock();
+    checkLoadImg();
   }
 }
 
@@ -1906,7 +1907,7 @@ function addCommentProduct() {
         if (dataStorage !== null) {
             document.querySelector('.product__comments__form-row input').value  = `${dataStorage.email}`;
         }
-      } catch {
+      } catch (e) {
         console.log('Зачем очистили данные авторизации???');
       }
     
@@ -1936,7 +1937,7 @@ function addCommentProduct() {
 function autoHeightBlock() {
   let proportions = [];
 
-  document.querySelectorAll('.main__item').forEach((item, i) => {
+  document.querySelectorAll('.main__item').forEach((item) => {
     const imgArray = item.querySelectorAll('.main-categories__item-img');
     let maxHeight = 0, 
         width = 0;
@@ -1947,6 +1948,7 @@ function autoHeightBlock() {
         width = img.clientWidth;
       }
     });
+    
     
     if (maxHeight > width) {
       maxHeight = width;
@@ -1961,6 +1963,18 @@ function autoHeightBlock() {
   localStorage.setItem('data_width', JSON.stringify(proportions));
 }
 
+
+function checkLoadImg() {
+  if (document.readyState == "complete") {
+    autoHeightBlock();
+  } else {
+    document.onreadystatechange = function () {
+      if (document.readyState == "complete") {
+        autoHeightBlock();
+      }
+    };
+  }
+}
 
 
 

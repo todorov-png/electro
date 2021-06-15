@@ -94,8 +94,8 @@ function goToBasket() {
       i++;
     });
     if(i>0) {
-      document.location.href = "http://electroshopkhai.zzz.com.ua/page/basket.html";
-      basketLink.setAttribute("href", 'http://electroshopkhai.zzz.com.ua/page/basket.html');
+      document.location.href = "page/basket.html";
+      basketLink.setAttribute("href", 'page/basket.html');
     }
   } else {
     callPopUp('Ваша корзина пуста!');

@@ -17,7 +17,7 @@ if (isset($_POST['text']) && isset($_POST['email'])) {
 	$result = mysqli_query($link, $query); 
 
 	$project_name = "ELECTRO";
-  $admin_email  = "electro@electroshopkhai.zzz.com.ua";
+  $admin_email  = "electro@electroshopnure.zzz.com.ua";
   $form_subject = "Новый вопрос с сайта ELECTRO";
   $sum = 0;
   $message .= "<tr style='background-color: #f8f8f8;'>
@@ -44,6 +44,7 @@ if (isset($_POST['text']) && isset($_POST['email'])) {
 
   echo json_encode($_POST, JSON_UNESCAPED_UNICODE);
 }
+
 // закрываем подключение
 mysqli_close($link);
 ?>
